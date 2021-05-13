@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "rest.endpoints.file-upload",
+      "type": "java.lang.String",
+      "description": "Description for rest.endpoints.file-upload."
+    }
+  ] }
