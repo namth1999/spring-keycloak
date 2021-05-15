@@ -18,14 +18,16 @@ import java.util.List;
 public class FileService {
     private final Logger log = LoggerFactory.getLogger(FileService.class);
 
-    FileResourceClient fileResourceClient;
+    private final FileResourceClient fileResourceClient;
+
+    private final String fileDir = "test-dir";
 
     public List<FileResponseDTO> uploadFile(List<MultipartFile> files) {
         List<FileResponseDTO> results = new ArrayList<>();
         if (files != null && !files.isEmpty()) {
             for (MultipartFile file : files) {
                 try {
-                    results.add(fileResourceClient.uploadFile(file));
+                    results.add(fileResourceClient.uploadFile(file, fileDir));
                 } catch (Exception e) {
                     log.error(this.getClass().getName(), e);
                     throw new SecurityException(e);

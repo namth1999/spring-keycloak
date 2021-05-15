@@ -14,7 +14,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 @Component
@@ -34,7 +33,7 @@ public class FileResourceClient {
     private final KeycloakRestTemplate restTemplate = new KeycloakRestTemplate(keycloakClientRequestFactory);
 
 
-    public FileResponseDTO uploadFile(MultipartFile multipartFile) throws Exception {
+    public FileResponseDTO uploadFile(MultipartFile multipartFile, String filePath) throws Exception {
         try {
             LinkedMultiValueMap<String, Object> requestParam = new LinkedMultiValueMap<>();
 
@@ -45,6 +44,8 @@ public class FileResourceClient {
                 fileHeader.add("Content-type", multipartFile.getContentType());
                 HttpEntity<byte[]> fileEntity = new HttpEntity<>(multipartFile.getBytes(), fileHeader);
                 requestParam.add("file", fileEntity);
+                requestParam.add("path", filePath);
+
             }
 
             HttpHeaders httpHeaders = new HttpHeaders();
