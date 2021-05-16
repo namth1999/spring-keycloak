@@ -20,7 +20,7 @@ public class FileService {
 
     private final FileResourceClient fileResourceClient;
 
-    private final String fileDir = "file";
+    private final String fileDir = "file/img";
 
     public List<FileResponseDTO> uploadFile(List<MultipartFile> files) {
         List<FileResponseDTO> results = new ArrayList<>();
